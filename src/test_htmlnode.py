@@ -1,4 +1,3 @@
-
 import unittest
 
 from htmlnode import HTMLNode
@@ -6,7 +5,7 @@ from htmlnode import HTMLNode
 
 class TestHTMLNode(unittest.TestCase):
     def test_props_to_html_raw_text(self):
-        html = HTMLNode(None, "Hello").props_to_html()
+        html = HTMLNode(value="Hello").props_to_html()
         text = ""
         self.assertEqual(html, text)
 
