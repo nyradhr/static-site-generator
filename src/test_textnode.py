@@ -16,12 +16,12 @@ class TestTextNode(unittest.TestCase):
 
     def test_type_not_eq(self):
         node = TextNode("This is an italic text node", TextType.ITALIC)
-        node2 = TextNode("This is an italic text node", TextType.NORMAL)
+        node2 = TextNode("This is an italic text node", TextType.TEXT)
         self.assertNotEqual(node, node2)
 
     def test_text_not_eq(self):
-        node = TextNode("This is a normal text node", TextType.NORMAL)
-        node2 = TextNode("This is a siamese cat", TextType.NORMAL)
+        node = TextNode("This is a normal text node", TextType.TEXT)
+        node2 = TextNode("This is a siamese cat", TextType.TEXT)
         self.assertNotEqual(node, node2)
 
     def test_url_none_not_eq(self):
@@ -32,6 +32,7 @@ class TestTextNode(unittest.TestCase):
     def test_same_url_diff_type_not_eq(self):
         node = TextNode("Dog with a bone", TextType.IMAGE, "example.org")
         node2 = TextNode("Dog with a bone", TextType.LINK, "example.org")
+        self.assertNotEqual(node, node2)
 
 
 if __name__ == "__main__":
