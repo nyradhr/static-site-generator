@@ -12,15 +12,18 @@ class TestParentNode(unittest.TestCase):
 
     def test_empty_list_children_to_html(self):
         empty_children = ParentNode(tag="p", children=[])
-        self.assertRaises(ValueError, empty_children.to_html)
+        with self.assertRaises(ValueError):
+            empty_children.to_html()
 
     def test_none_children_to_html(self):
         none_children = ParentNode(tag="p", children=None)
-        self.assertRaises(ValueError, none_children.to_html)
+        with self.assertRaises(ValueError):
+            none_children.to_html()
 
     def test_none_tag_to_html(self):
         none_tag = ParentNode(tag=None, children=[LeafNode(None, "Normal text")])
-        self.assertRaises(ValueError, none_tag.to_html)
+        with self.assertRaises(ValueError):
+            none_tag.to_html()
 
     def test_one_children_to_html(self):
         one_children = ParentNode(tag="p", children=[LeafNode(None, "Normal text")]).to_html()
@@ -39,8 +42,10 @@ class TestParentNode(unittest.TestCase):
 
     def test_nested_none_children_to_html(self):
         nested_exception = ParentNode(tag='p', children=[ParentNode(tag='b', children=None)])
-        self.assertRaises(ValueError, nested_exception.to_html)
+        with self.assertRaises(ValueError):
+            nested_exception.to_html()
 
     def test_nested_empty_children_to_html(self):
         nested_exception = ParentNode(tag='b', children=[ParentNode(tag='p', children=[])])
-        self.assertRaises(ValueError, nested_exception.to_html)
+        with self.assertRaises(ValueError):
+            nested_exception.to_html()
