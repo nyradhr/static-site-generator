@@ -1,5 +1,4 @@
 from htmlnode import HTMLNode
-from functools import reduce
 
 class ParentNode(HTMLNode):
     def __init__(self, tag, children, props=None):

@@ -1,7 +1,6 @@
 import unittest
 
 from extractlinks import *
-from textnode import TextNode, TextType
 
 class TestExtractLinks(unittest.TestCase):
 
