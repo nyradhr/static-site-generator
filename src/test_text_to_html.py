@@ -1,11 +1,11 @@
 import unittest
 
-from text2html import text_node_to_html_node
+from text_to_html import text_node_to_html_node
 from leafnode import LeafNode
 from textnode import TextNode, TextType
 
 
-class TestText2Html(unittest.TestCase):
+class TestTextToHtml(unittest.TestCase):
     def test_text(self):
         node = text_node_to_html_node(TextNode("Just a string of text", TextType.TEXT))
     
