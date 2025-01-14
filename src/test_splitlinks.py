@@ -91,15 +91,15 @@ class TestSplitLinks(unittest.TestCase):
         self.assertEqual(split_nodes, expected)
 
     def test_split_links_bold_node(self):
-        input_node = [TextNode("[link](url)", TextType.BOLD)]
+        input_node = [TextNode("Only the bold click here: [link](url)", TextType.BOLD)]
         split_nodes = split_nodes_links(input_node)
-        expected = [TextNode("link", TextType.LINK, "url")]
+        expected = [TextNode("Only the bold click here: ", TextType.BOLD), TextNode("link", TextType.LINK, "url")]
         self.assertEqual(split_nodes, expected)
 
     def test_split_images_italics_node(self):
-        input_node = [TextNode("![alt](url)", TextType.ITALIC)]
+        input_node = [TextNode("Italic string with an image: ![alt](url)", TextType.ITALIC)]
         split_nodes = split_nodes_images(input_node)
-        expected = [TextNode("alt", TextType.IMAGE, "url")]
+        expected = [TextNode("Italic string with an image: ", TextType.ITALIC), TextNode("alt", TextType.IMAGE, "url")]
         self.assertEqual(split_nodes, expected)
 
     def test_split_links_url_special_chars_spaces(self):

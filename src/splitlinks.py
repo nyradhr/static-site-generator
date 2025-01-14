@@ -25,6 +25,7 @@ def split_nodes_images(old_nodes):
 
 def __split_nodes_url(node, new_nodes, elements, type):
     text = node.text
+    original_type = node.text_type
     for element in elements:
         alt = element[0]
         url = element[1]
@@ -34,8 +35,8 @@ def __split_nodes_url(node, new_nodes, elements, type):
             else:
                 split_text = text.split(f"![{alt}]({url})", 1)
             if split_text[0] != "":
-                new_nodes.append(TextNode(split_text[0], TextType.TEXT))
+                new_nodes.append(TextNode(split_text[0], original_type))
             new_nodes.append(TextNode(alt, type, url))
             text = split_text[1]
     if text != "":
-        new_nodes.append(TextNode(text, TextType.TEXT))
+        new_nodes.append(TextNode(text, original_type))
