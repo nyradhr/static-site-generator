@@ -5,7 +5,7 @@ from text_to_textnodes import text_to_textnodes
 
 class TestTextToTextNodes(unittest.TestCase):
 
-    def test_text_to_textnodes_happy_path(self):
+    def test_happy_path(self):
         text = "This is **text** with an *italic* word and a `code block` and an ![obi wan image](https://i.imgur.com/fJRm4Vk.jpeg) and a [link](https://boot.dev)"
         nodes = text_to_textnodes(text)
         expected = [
@@ -22,13 +22,13 @@ class TestTextToTextNodes(unittest.TestCase):
         ]
         self.assertEqual(nodes, expected)
 
-    def test_text_to_textnodes_empty_string(self):
+    def test_empty_string(self):
         text = ""
         nodes = text_to_textnodes(text)
         expected = []
         self.assertEqual(nodes, expected)
 
-    def test_text_to_textnodes_image_inside_bold_text(self):
+    def test_image_inside_bold_text(self):
         text = "This string contains **bold text with a [link](url) inside** of it"
         nodes = text_to_textnodes(text)
         expected = [
@@ -40,7 +40,7 @@ class TestTextToTextNodes(unittest.TestCase):
         ]
         self.assertEqual(nodes, expected)
 
-    def test_text_to_textnodes_only_normal_text(self):
+    def test_only_normal_text(self):
         text = "This string of text does not contain any special markdown character"
         nodes = text_to_textnodes(text)
         expected = [TextNode(text, TextType.TEXT)]
