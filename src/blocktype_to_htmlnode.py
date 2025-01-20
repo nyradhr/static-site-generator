@@ -1,11 +1,10 @@
-from textnode import TextNode, TextType
 from htmlnode import HTMLNode
 
 def blocktype_to_htmlnode(blocktype):
     if blocktype == "paragraph":
         return HTMLNode(tag="p", children=[])
     elif blocktype == "heading":
-        return HTMLNode(tag="h1", children=[])  # TODO: Adjust tag dynamically for h2, h3, etc.
+        return HTMLNode(tag="None", children=[]) #tags will be added by the postprocessing function
     elif blocktype == "quote":
         return HTMLNode(tag="blockquote", children=[])
     elif blocktype == "unordered_list":
@@ -18,9 +17,7 @@ def blocktype_to_htmlnode(blocktype):
         raise ValueError(f"Unknown block type: {blocktype}")
 
 
-# paragraph --> <p>
-# heading ---> check for number of # and get corresponding tag (h1, h2, etc)
-# code -> <code>
-# quote -> <blockquote>
-# unordered_list -> <ul> containing <li> tags for every line --> substitute start of lines "* " or "- " with <li>
-# ordered_list -> <ol> containing <li> tags for every line --> substitute start of lines "%d. " with <li>
+def heading_tag_parser(block):
+    # Determine header level based on leading '#' characters
+    header_level = block.count("#", 0, block.find(" "))
+    return f"h{min(header_level, 6)}"
