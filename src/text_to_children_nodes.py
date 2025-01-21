@@ -1,7 +1,9 @@
-# input: block
-# extrapolate INLINE TextNodes
-# text_to_textnodes --> list of TextNodes that compose the block
-# textnode_to_htmlnode --> list of HTMLNodes
-# please note: leafnodes might be used instead of htmlnodes when considering inline elements
-def text_to_children_nodes(text):
-    return None
+from text_to_textnodes import text_to_textnodes
+from text_to_html import text_node_to_html_node
+
+def text_to_children_nodes(block): #block
+    textnodes = text_to_textnodes(block)
+    htmlnodes = []
+    for node in textnodes:
+        htmlnodes.append(text_node_to_html_node(node))
+    return htmlnodes

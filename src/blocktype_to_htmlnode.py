@@ -4,7 +4,7 @@ def blocktype_to_htmlnode(blocktype):
     if blocktype == "paragraph":
         return HTMLNode(tag="p", children=[])
     elif blocktype == "heading":
-        return HTMLNode(tag="None", children=[]) #tags will be added by the postprocessing function
+        return HTMLNode(tag=None, children=[]) #tags will be added by the postprocessing function
     elif blocktype == "quote":
         return HTMLNode(tag="blockquote", children=[])
     elif blocktype == "unordered_list":
@@ -15,7 +15,6 @@ def blocktype_to_htmlnode(blocktype):
         return HTMLNode(tag="pre", children=[HTMLNode(tag="code", children=[])])
     else:
         raise ValueError(f"Unknown block type: {blocktype}")
-
 
 def heading_tag_parser(block):
     # Determine header level based on leading '#' characters
