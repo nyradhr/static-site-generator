@@ -3,7 +3,7 @@ import re
 def block_to_text(block, blocktype):
     if blocktype == "quote":
         lines = block.split('\n')
-        lines = [line[1:] for line in lines]
+        lines = [line[1:].lstrip() for line in lines]
         return '\n'.join(lines)
     elif blocktype == "unordered_list":
         lines = block.split('\n')
