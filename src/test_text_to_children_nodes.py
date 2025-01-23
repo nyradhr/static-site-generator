@@ -11,7 +11,7 @@ class TestTextToChildrenNodes(unittest.TestCase):
             "Four five six"
         )
         nodes = text_to_children_nodes(text)
-        expected = [LeafNode(None, value="One two three\nFour five six")]
+        expected = [LeafNode(tag=None, value="One two three\nFour five six")]
         self.assertEqual(nodes, expected)
 
     def test_bold_text(self):
@@ -20,7 +20,7 @@ class TestTextToChildrenNodes(unittest.TestCase):
             "**bold**"
         )
         nodes = text_to_children_nodes(text)
-        expected = [LeafNode(None, value="This text is very\n"), LeafNode(tag="b", value="bold")]
+        expected = [LeafNode(tag=None, value="This text is very\n"), LeafNode(tag="b", value="bold")]
         self.assertEqual(nodes, expected)
     
     def test_italic_text(self):
@@ -31,9 +31,9 @@ class TestTextToChildrenNodes(unittest.TestCase):
         nodes = text_to_children_nodes(text)
         expected = [
             LeafNode(tag="i", value="Oh my..."), 
-            LeafNode(None, value="\nso very "), 
+            LeafNode(tag=None, value="\nso very "), 
             LeafNode(tag="i", value="sophisticated"),
-            LeafNode(None, value="."), 
+            LeafNode(tag=None, value="."), 
         ]
         self.assertEqual(nodes, expected)
 
@@ -47,9 +47,9 @@ class TestTextToChildrenNodes(unittest.TestCase):
         )
         nodes = text_to_children_nodes(text)
         expected = [
-            LeafNode(None, value="This string contains a snippet of code:\n"), 
+            LeafNode(tag=None, value="This string contains a snippet of code:\n"), 
             LeafNode(tag="code", value="if (x in arr) {\nreturn y\n}"),
-            LeafNode(None, value="\nNeat, right?")
+            LeafNode(tag=None, value="\nNeat, right?")
         ]
         self.assertEqual(nodes, expected)
 
@@ -57,7 +57,7 @@ class TestTextToChildrenNodes(unittest.TestCase):
         text = "Visit [Boot.dev](https://boot.dev)"
         nodes = text_to_children_nodes(text)
         expected = [
-            LeafNode(None, value="Visit "),
+            LeafNode(tag=None, value="Visit "),
             LeafNode(tag="a", value="Boot.dev", props={"href": "https://boot.dev"})
         ]
         self.assertEqual(nodes, expected)
@@ -69,7 +69,7 @@ class TestTextToChildrenNodes(unittest.TestCase):
             LeafNode(tag="b", value="Bold"),
             LeafNode(tag=None, value=" with "),
             LeafNode(tag="code", value="code"),
-            LeafNode(None, value=" and "),
+            LeafNode(tag=None, value=" and "),
             LeafNode(tag="i", value="italic")
         ]
         self.assertEqual(nodes, expected)
@@ -84,7 +84,7 @@ class TestTextToChildrenNodes(unittest.TestCase):
         text = "Here's a logo: ![Boot.dev](https://boot.dev/logo.png)"
         nodes = text_to_children_nodes(text)
         expected = [
-            LeafNode(None, value="Here's a logo: "),
+            LeafNode(tag=None, value="Here's a logo: "),
             LeafNode(tag="img", value="", props={"src": "https://boot.dev/logo.png", "alt": "Boot.dev"})
         ]
         self.assertEqual(nodes, expected)
