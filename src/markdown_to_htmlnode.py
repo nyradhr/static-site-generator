@@ -1,4 +1,4 @@
-from htmlnode import HTMLNode
+from parentnode import ParentNode
 from block_to_blocktype import block_to_blocktype
 from markdown_to_blocks import markdown_to_blocks
 from blocktype_to_htmlnode import blocktype_to_htmlnode, heading_tag_parser
@@ -24,7 +24,7 @@ def markdown_to_htmlnode(markdown):
             # Split into li nodes first
             lines = text.split('\n')
             #print(f"List lines: {lines}")
-            children = [HTMLNode("li", children=text_to_children_nodes(line)) for line in lines]
+            children = [ParentNode("li", children=text_to_children_nodes(line)) for line in lines]
         else:
             children = text_to_children_nodes(text)
         #linking children to parent
@@ -35,6 +35,6 @@ def markdown_to_htmlnode(markdown):
             html.children = children
         htmlnodes.append(html)
     #linking all container nodes to the root node
-    root = HTMLNode(tag = "div", children = htmlnodes)
+    root = ParentNode(tag = "div", children = htmlnodes)
     #print(f"Final HTML nodes: {root}")
     return root

@@ -1,4 +1,4 @@
-from htmlnode import HTMLNode
+from parentnode import ParentNode
 
 def blocktype_to_htmlnode(blocktype):
     """Convert a markdown block type to its corresponding HTMLNode.
@@ -15,17 +15,17 @@ def blocktype_to_htmlnode(blocktype):
         ValueError: If blocktype is not one of the valid types.
     """
     if blocktype == "paragraph":
-        return HTMLNode(tag="p")
+        return ParentNode(tag="p", children=None)
     elif blocktype == "heading":
-        return HTMLNode()
+        return ParentNode(tag=None, children=None)
     elif blocktype == "quote":
-        return HTMLNode(tag="blockquote")
+        return ParentNode(tag="blockquote", children=None)
     elif blocktype == "unordered_list":
-        return HTMLNode(tag="ul")
+        return ParentNode(tag="ul", children=None)
     elif blocktype == "ordered_list":
-        return HTMLNode(tag="ol")
+        return ParentNode(tag="ol", children=None)
     elif blocktype == "code":
-        return HTMLNode(tag="pre", children=[HTMLNode(tag="code")])
+        return ParentNode(tag="pre", children=[ParentNode(tag="code", children=None)])
     else:
         raise ValueError(f"Unknown block type: {blocktype}")
 
